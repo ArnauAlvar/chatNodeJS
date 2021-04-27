@@ -1,0 +1,14 @@
+version: "3"
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node/Dockerfile
+    container_name: nodeJS
+    volumes: 
+      - ./app:/usr/src/app
+      - ./node:/root/.npm/_logs
+    expose:
+      - 80
+    ports:
+      - 80:80
