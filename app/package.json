@@ -2,10 +2,10 @@
     "name": "chat_node",
     "version": "1.0.0",
     "dependencies": {
-        "socker.io": "4.0.0",
-        "express": "^4.17.1"
+        "express": "latest",
+        "socket.io": "latest"
     },
     "scripts": {
-        "start": "node index.js"
+        "start": "node server.js"
     }
 }

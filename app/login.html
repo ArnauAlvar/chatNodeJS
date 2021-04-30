@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Sala de chat</title>
+  <style>
+    body{font-family: Arial;}
+  </style>
+</head>
+<body>
+  <h3>Mensajes:</h3>
+  <ul id="listado-msjs">
+     
+  </ul>
+  <div id="env-msjs">
+      <input id="idUsuario"  placeholder="Nombre de Usuario">
+      <button id="btn-msj" onclick="declararUsuario()">Enviar</button>
+  </div>
+   
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  
+  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    var socket = io(); // Inicializamos socketIO en el cliente
+     
+   
+    socket.on('redirect', function(destination) {
+        window.location.href = destination;
+    });
+  
+    function declararUsuario() {
+        socket.emit('nuevo usuario', $('#idUsuario').val());
+    };
+  </script>
+</body>
+</html>
