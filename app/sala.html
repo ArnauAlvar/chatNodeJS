@@ -23,26 +23,17 @@
   <script>
     var socket = io(); // Inicializamos socketIO en el cliente
      
-    /*
-     * Evento listener para el 'nuevo mensaje'
-     *   Se puede ver que es el mismo evento que se envia 
-     *   desde el servidor.
-     * Agregamos el mensaje ingresado por el usuario a la lista.
-     */
-    socket.on('nuevo mensaje', function (msj) {
+    
+    socket.on('append mensaje', function (data) {
 
-        const $usernameDiv = $('<span class="username"/>').text(data.username).css('color', getUsernameColor(data.username));
-        
-        const $messageBodyDiv = $('<span class="messageBody">').text(data.msj);
+        console.log(data);
 
-      $('#listado-msjs').append( $('<li>').text(msj) );
+        let usernameDiv = document.createElement('li').appendChild(document.createTextNode(data.username + ": " + data.message));
+
+        document.getElementById('listado-msjs').appendChild(usernameDiv);
+
     });
      
-    /*
-     * Emitimos un evento de tipo 'nuevo mensaje' cada vez
-     * que se presiona el botón enviar y enviamos
-     * su contenido como mensaje.
-     */
     function enviarMensaje() {
         socket.emit('nuevo mensaje', $('#nuevo-msj').val());
         $('#nuevo-msj').val('');

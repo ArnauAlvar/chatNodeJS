@@ -26,6 +26,8 @@ app.get('/sala', function(req, res) {
  *  nuevas conexiones.
  */
 io.on('connection', function(socket) {
+
+  
    
   console.log('New user connected');
    
@@ -39,7 +41,8 @@ io.on('connection', function(socket) {
    *               través del socket.
    */
   socket.on('nuevo mensaje', function(msj) {
-    io.emit('nuevo mensaje',{
+
+    io.emit('append mensaje',{
         username: socket.username,
         message: msj
     })
@@ -47,7 +50,7 @@ io.on('connection', function(socket) {
 
   socket.on('nuevo usuario', function(usuario) {
 
-    socket.username = usuario;
+   socket.username = usuario;
 
     var destination = '/sala';
     socket.emit('redirect', destination);
